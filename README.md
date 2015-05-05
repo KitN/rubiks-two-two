@@ -21,17 +21,12 @@ A scrambled cube can be passed to the program by giving it a sequence of 24 spac
 
 The color characters are:
 
--y : yellow
-
--g : green
-
--w : white
-
--b : blue
-
--r : red
-
--o : orange
+- y : yellow
+- g : green
+- w : white
+- b : blue
+- r : red
+- o : orange
 
 
 For example, passing an already solved cube to the program looks like so:
