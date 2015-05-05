@@ -14,6 +14,11 @@ Cubes in correct position: 8
 274 micrcoseconds
 ```
 
+Where `test1.txt` contains a single line describing a solved cube:
+```
+y y y y g g g g w w w w b b b b r r r r o o o o
+```
+
 ## Input
 To make representing the cube easier,  we consider the cube with the Rubik's Cube logo on it fixed in the **bottom, back, left** of the cube. This means the 'cubie' with the white, red and blue stickers/colors on it does not move when manipulating the cube.
 
@@ -28,9 +33,29 @@ The color characters are:
 - r : red
 - o : orange
 
-
-For example, passing an already solved cube to the program looks like so:
-
+The stickers are enumerated (from 1-9 then A-Q) like so using this unfolded 2-d map of the cube:
+```
+     +---+
+     |1|2|
+     +---+
+     |3|4|
+     +---+
++---++---++---+
+|H|I||5|6||N|O|
++---++---++---+
+|J|K||7|8||P|Q|
++---++---++---+
+     +---+
+     |9|A|
+     +---+
+     |B|C|
+     +---+
+     +---+
+     |D|E|
+     +---+
+     |F|G|
+     +---+
+```
 
 ## Output
 
