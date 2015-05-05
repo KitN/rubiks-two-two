@@ -1,7 +1,7 @@
 # rubiks-two-two
 An algorithm for solving [2x2 Rubik's cubes][rubiks] also known as the pocket or mini cube. I made this for my Algorithm Analysis and Design class taught by Richard Hoshino at [Quest University][quest]. The rather brute-force algorithm was designed by me, but most of the code for representing the cube in Java was provided by my friend [William Bernoudy][will].
 
-## Installing
+## Installing/Running
 Simply compile `KitRubik.java` and pass the input that describes your cube to the standard input of your terminal and the script will output the sequence of moves required to solve the given cube.
 
 Example Usage (passing the program an already solved cube):
@@ -18,6 +18,8 @@ Where `test1.txt` contains a single line describing a solved cube:
 ```
 y y y y g g g g w w w w b b b b r r r r o o o o
 ```
+
+To play with the code, 4 test inputs are provided in the `testinputs` folder. Each one is one line containing differently scrambled cubes.
 
 ## Input
 To make representing the cube easier,  we consider the cube with the Rubik's Cube logo on it fixed in the **bottom, back, left** of the cube. This means the 'cubie' with the white, red and blue stickers/colors on it does not move when manipulating the cube.
