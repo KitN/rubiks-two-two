@@ -66,16 +66,7 @@ public class KitRubik {
  
         //----------------START SOLVING-----------------//
 
-        int[] keepcubes1 = {5};
-        int[] keepcubes2 = {5,6};
-        int[] keepcubes3 = {5,6,7};
-        int[] keepcubes4 = {0,5,6,7};
-        int[] keepcubes5 = {0,1,5,6,7};
-        int[] keepcubes6 = {0,1,2,5,6,7};
-        int[] keepcubes7 = {0,1,2,3,5,6,7};
-
-
-        String[] turns = trymoves(keepcubes7, 11);
+        String[] turns = trymoves(14);
         for(int q = 0; q<turns.length; ++q){
             moveList += turns[q];
             moveList += " ";
@@ -93,7 +84,7 @@ public class KitRubik {
  
     }
  
-    public static String[] trymoves(int[] preserve, int depth){
+    public static String[] trymoves(int depth){
         String[] answer = {"NA"};
         int[] startPos = new int[8];
         int[] startRot = new int[8];
@@ -105,23 +96,23 @@ public class KitRubik {
             sits += "5";
         }
         // Generates all numbers in base six up to 555555, which represent each possible sequence of six moves.
-        for(int i = 0; i<=Integer.parseInt(sits, 6); ++i){
+        for(long i = 0; i<=Long.parseLong(sits, 6); ++i){
             cubiesPos = startPos;
             cubiesRot = startRot;
-            String movestring = Integer.toString(i, 6);
+            String movestring = Long.toString(i, 6);
             String[] moves = new String[movestring.length()];
             for(int d = 0; d<movestring.length(); ++d){
                 String move = diffMoves[Integer.parseInt(movestring.substring(d,d+1))];
                 moves[d] = move;
             }
             rotateFaces(moves);
-            int prescount = 0;
-            for(int number : preserve){
+            int correctcount = 0;
+            for(int number = 0; number < 8; ++number){
                 if(cubiesPos[number] == number && cubiesRot[number] == 0){
-                    prescount++;
+                    correctcount++;
                 }
             } 
-            if(prescount==preserve.length){
+            if(correctcount==8){
                 answer = moves;
                 break;
             }
@@ -134,37 +125,30 @@ public class KitRubik {
 
     public static void rotateFaces(String[] moves){ // Accepts an array of strings where each string corresponds to one move in the following switch statement
         for (String face : moves){                  // For example, if you want to rotate the top clockwise, the right counter-clockwise, and the front clockwise, you would do rotateFaces(new String []{"T", "R'", "F"});
-//            movecount++;
             switch (face) {
                 case "F":
                     cubiesPos = new int[]{cubiesPos[0], cubiesPos[1], cubiesPos[6], cubiesPos[2], cubiesPos[4], cubiesPos[5], cubiesPos[7], cubiesPos[3]};
                     cubiesRot = new int[]{cubiesRot[0], cubiesRot[1], (cubiesRot[6]+1) % 3, (cubiesRot[2]+2) % 3, cubiesRot[4], cubiesRot[5], (cubiesRot[7]+2) % 3, (cubiesRot[3]+1) % 3};
-//                    moveList += "F ";
                     break;
                 case "R":
                     cubiesPos = new int[]{cubiesPos[0], cubiesPos[3], cubiesPos[2], cubiesPos[7], cubiesPos[4], cubiesPos[1], cubiesPos[6], cubiesPos[5]};
                     cubiesRot = new int[]{cubiesRot[0], (cubiesRot[3]+2) % 3, cubiesRot[2], (cubiesRot[7]+1) % 3, cubiesRot[4], (cubiesRot[1]+1) % 3, cubiesRot[6], (cubiesRot[5]+2) % 3};
-//                    moveList += "R ";
                     break;
                 case "T":
                     cubiesPos = new int[]{cubiesPos[2], cubiesPos[0], cubiesPos[3], cubiesPos[1], cubiesPos[4], cubiesPos[5], cubiesPos[6], cubiesPos[7]};
                     cubiesRot = new int[]{cubiesRot[2], cubiesRot[0], cubiesRot[3], cubiesRot[1], cubiesRot[4], cubiesRot[5], cubiesRot[6], cubiesRot[7]};
-//                    moveList += "T ";
                     break;
                 case "F'":
                     cubiesPos = new int[]{cubiesPos[0], cubiesPos[1], cubiesPos[3], cubiesPos[7], cubiesPos[4], cubiesPos[5], cubiesPos[2], cubiesPos[6]};
                     cubiesRot = new int[]{cubiesRot[0], cubiesRot[1], (cubiesRot[3]+1) % 3, (cubiesRot[7]+2) % 3, cubiesRot[4], cubiesRot[5], (cubiesRot[2]+2) % 3, (cubiesRot[6]+1) % 3};
-//                    moveList += "F' ";
                     break;
                 case "R'":
                     cubiesPos = new int[]{cubiesPos[0], cubiesPos[5], cubiesPos[2], cubiesPos[1], cubiesPos[4], cubiesPos[7], cubiesPos[6], cubiesPos[3]};
                     cubiesRot = new int[]{cubiesRot[0], (cubiesRot[5]+2) % 3, cubiesRot[2], (cubiesRot[1]+1) % 3, cubiesRot[4], (cubiesRot[7]+1) % 3, cubiesRot[6], (cubiesRot[3]+2) % 3};
-//                    moveList += "R' ";
                     break;
                 case "T'":
                     cubiesPos = new int[]{cubiesPos[1], cubiesPos[3], cubiesPos[0], cubiesPos[2], cubiesPos[4], cubiesPos[5], cubiesPos[6], cubiesPos[7]};
                     cubiesRot = new int[]{cubiesRot[1], cubiesRot[3], cubiesRot[0], cubiesRot[2], cubiesRot[4], cubiesRot[5], cubiesRot[6], cubiesRot[7]};
-//                    moveList += "T' ";
                     break;
                 default:
                     break;
