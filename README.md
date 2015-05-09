@@ -7,7 +7,7 @@ Simply compile `KitRubik.java` and pass the input that describes your cube to th
 Example Usage (passing the program an already solved cube):
 
 ```
-java KitRubik < tests/test1.txt 
+java KitRubik < testinput/test1.txt 
 F F' 
 Number of moves: 2
 Cubes in correct position: 8
@@ -79,8 +79,6 @@ The algorithm makes use of *senary numbers* (base 6) to do a breadth-first searc
 
 
 For example, `023` in base 6 or 15 in decimal, corresponds to the three-move sequence `T F F'`. By iterating from `0` to `55555555555555` in base 6, the algorithm checks all of the shorter sequences before checking longer ones. The result of this is the algorithm working very quickly on barely-scrambled cubes.
-
-Note that because 6^12 is more than a Java `int` can store, and I use functions that assume type `int`, the code is presently limited to solving cubes that can be solved in 11 moves or less.
 
 [rubiks]:https://www.rubiks.com/store/cubes/rubiks-2x2
 [quest]:www.questu.ca
